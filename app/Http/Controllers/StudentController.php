@@ -39,7 +39,8 @@ class StudentController extends Controller
 
         //$data= DB::table('Students')->where('id', 1)->value('name');
         //$data = Student::select('email' )->where('name' , 'bilal')->get();  
-        $data = DB::table('Students')->get();
+        //$data = DB::table('Students')->get();
+        $data = DB::table('Students')->orderBy('name' , 'asc')->get();
         return view('showstudent', compact('data'));
 
         exit();
