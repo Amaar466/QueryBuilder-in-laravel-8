@@ -39,11 +39,16 @@ class StudentController extends Controller
 
         //$data= DB::table('Students')->where('id', 1)->value('name');
         //$data = Student::select('email' )->where('name' , 'bilal')->get();  
-        //$data = DB::table('Students')->get();
-        $data = DB::table('Students')->orderBy('name' , 'asc')->get();
+        $data = DB::table('Students')->get();
+//order by asc or desc order
+       // $data = DB::table('Students')->orderBy('name' , 'asc')->get();
+//Grouped by 
+        //$data = DB::table('Students')->select('email')->groupBy('email');
+//Offset and LImits
+       //$data = DB::table('Students')->offset(3)->limit(6)->get(); 
         return view('showstudent', compact('data'));
 
-        exit();
+       
         //dd($student);
 
     }
