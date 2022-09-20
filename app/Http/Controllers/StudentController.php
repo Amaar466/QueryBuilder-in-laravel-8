@@ -39,16 +39,38 @@ class StudentController extends Controller
 
         //$data= DB::table('Students')->where('id', 1)->value('name');
         //$data = Student::select('email' )->where('name' , 'bilal')->get();  
-        $data = DB::table('Students')->get();
-//order by asc or desc order
-       // $data = DB::table('Students')->orderBy('name' , 'asc')->get();
+        
+ //order by asc or desc order
+        // $data = DB::table('Students')->orderBy('name' , 'asc')->get();
 //Grouped by 
         //$data = DB::table('Students')->select('email')->groupBy('email');
 //Offset and LImits
-       //$data = DB::table('Students')->offset(3)->limit(6)->get(); 
+        //$data = DB::table('Students')->offset(3)->limit(6)->get(); 
+//count function
+        //    $data = DB::table('Students')->where('id', '>' , 2)->count();
+        //    print_r($data);
+        //    exit();
+//two union function
+        //$data = DB::table('Students')->where('name' , 'bilal')->union($data)->get();
+//max/min function
+        // $data = DB::table('Students')->min('id');
+        // print_r($data);
+        // exit();
+//avg/sum function
+        // $data = DB::table('Students')->sum('id');
+        // print_r($data);
+        // exit();
+//not work exists
+        // if (DB::table('STudents')->where('name','amaar')->doesnotexits()) {
+        //     echo "not exist";
+        // }
+        // exit();
+//$data = DB::table('Students')->get();
+$data = DB::table('Students')->Paginate(2);
+
         return view('showstudent', compact('data'));
 
-       
+
         //dd($student);
 
     }
@@ -120,8 +142,8 @@ class StudentController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
         );
-        $result = DB::table('Students')->where('id' , $id)->update($data);
-       
+        $result = DB::table('Students')->where('id', $id)->update($data);
+
         return redirect()->route('student.show')->with('status', 'Data Updated!');
     }
 
@@ -131,11 +153,10 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request , $id)
+    public function destroy(Request $request, $id)
     {
-        
-       $data = DB::table('Students')->where('id' , $id)->delete();
-       return redirect()->route('student.show')->with('status' , "Data Deleted");
 
+        $data = DB::table('Students')->where('id', $id)->delete();
+        return redirect()->route('student.show')->with('status', "Data Deleted");
     }
 }
