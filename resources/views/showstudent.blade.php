@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <table class="table table-dark table-striped">
+    <table class="table table-dark table-striped table-responsive">
    <thead>
     <th>Id</th>
     <th>Name</th>
@@ -24,8 +24,8 @@
         <td>{{$final->name}}</td>
         <td>{{$final->email}}</td>
         <td>{{$final->phone}}</td>
-        <td><a href="{{route('student.edit' , $final->id)}}">Edit</a></td>
-        <td><a href="{{route('student.delete' , $final->id)}}">Delete</a></td>
+        <td><a class="btn btn-primary" href="{{route('student.edit' , $final->id)}}">Edit</a></td>
+        <td><a class="btn btn-danger" href="{{route('student.delete' , $final->id)}}">Delete</a></td>
     </tr>
     @endforeach
    </tbody>
